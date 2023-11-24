@@ -1,14 +1,23 @@
+using System;
 using UnityEngine;
 
 public class ResetPlayer : MonoBehaviour
 {
+    // Berrié
     private Rigidbody2D rb;
-    private Vector2 startPosition;
+    private Tuple<Vector3, Quaternion> rbStartTransform;
+
+    // Camera
+    private Camera cam;
+    private Vector3 camStartTransform;
 
     private void Awake()
     {
         rb = GameObject.Find("Berrié").GetComponent<Rigidbody2D>();
-        startPosition = rb.transform.position;
+        rbStartTransform = new Tuple<Vector3, Quaternion>(rb.transform.position, rb.transform.rotation);
+
+        cam = Camera.main;
+        camStartTransform = cam.transform.position;
     }
 
     // Start is called before the first frame update
@@ -21,11 +30,16 @@ public class ResetPlayer : MonoBehaviour
     {
     }
 
-    public void TaskResetPosition()
+    public void TaskResetTransform()
     {
-        rb.velocity = Vector2.zero;
+        rb.velocity = Vector3.zero;
         rb.angularVelocity = 0;
-        rb.MovePosition(startPosition);
-        rb.MoveRotation(0);
+        rb.transform.position = rbStartTransform.Item1;
+        rb.transform.rotation = rbStartTransform.Item2;
+    }
+
+    public void TaskResetCamera()
+    {
+        cam.transform.position = camStartTransform;
     }
 }
