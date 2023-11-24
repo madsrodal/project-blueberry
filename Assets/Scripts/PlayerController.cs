@@ -58,20 +58,8 @@ public class PlayerController : MonoBehaviour
         }
 
         float acceleration = isGrounded ? WalkAcceleration : AirAcceleration;
-        float deceleration = isGrounded ? GroundDeceleration : 0;
+        
         velocity.x = Mathf.MoveTowards(velocity.x, MoveSpeed * moveInput, acceleration * Time.deltaTime);
-
-        //if (moveInput != 0)
-        //{
-            
-
-        //    transform.Translate(new Vector2(horizontalInput * Speed / 100, verticalInput * Speed / 100), Space.Self);    // translate moves an object along its transform
-        //}
-        //else
-        //{
-        //    velocity.x = 0;// Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
-        //    return;
-        //}
 
         velocity.y += Physics2D.gravity.y * Time.deltaTime;
 
