@@ -3,25 +3,25 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float JumpForce = 10f;
-    public float MoveSpeed = 5f;
+    public float JumpForce = 5f;
+    public float MoveSpeed = 400f;
     
     const float groundEpsilon = .2f; 
     private bool isGrounded = true;
 
     private Rigidbody2D rb;
-    private Vector2 velocity;
+    public Vector2 velocity;
     private CircleCollider2D circleCollider;
 
     [SerializeField, Tooltip("Acceleration while grounded.")]
-    public float WalkAcceleration = 75;
+    public float WalkAcceleration = 300;
 
     [SerializeField, Tooltip("Acceleration while in the air.")]
-    public float AirAcceleration = 30;
+    public float AirAcceleration = 150;
 
     [SerializeField, Tooltip("Deceleration applied when character is grounded and not attempting to move.")]
-    public float GroundDeceleration = 70;
-
+    public float GroundDeceleration = 300;
+    public bool jumping = false;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,32 +43,30 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         float moveInput = Input.GetAxisRaw("Horizontal");
+        jumping = Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0;
 
-        float horizontalInput = Input.GetAxisRaw("Horizontal");   // this takes in ANY horizontal input, whether that is arrow keys, A/D or even controller input
+        float acceleration = isGrounded ? WalkAcceleration : AirAcceleration;
+        velocity.x = Mathf.MoveTowards(velocity.x, MoveSpeed * moveInput, acceleration);
+        rb.AddForce(velocity * Time.deltaTime);
 
         if (isGrounded)
         {
             velocity.y = 0;
 
-            if (Input.GetButtonDown("Jump"))
+            if (jumping)
             {
                 // Calculate the velocity required to achieve the target jump height.
                 velocity.y = Mathf.Sqrt(2 * JumpForce * Mathf.Abs(Physics2D.gravity.y));
             }
         }
 
-        float acceleration = isGrounded ? WalkAcceleration : AirAcceleration;
-        
-        velocity.x = Mathf.MoveTowards(velocity.x, MoveSpeed * moveInput, acceleration * Time.deltaTime);
-
         velocity.y += Physics2D.gravity.y * Time.deltaTime;
-
-        transform.Translate(velocity * Time.deltaTime);
-
+        rb.AddForce(new Vector2(0, velocity.y), ForceMode2D.Impulse);
+        
         isGrounded = false;
 
         // Retrieve all colliders we have intersected after velocity has been applied.
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius + groundEpsilon);
 
         foreach (Collider2D hit in hits)
         {
