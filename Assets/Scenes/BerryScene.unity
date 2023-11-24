@@ -275,8 +275,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7613694467011518932, guid: b8e4a1633a1a0724994eb24d16474b8e, type: 3}
+      propertyPath: Camera
+      value: 
+      objectReference: {fileID: 73721187}
     m_RemovedComponents:
     - {fileID: 8642463927499612443, guid: b8e4a1633a1a0724994eb24d16474b8e, type: 3}
+    - {fileID: 7247089115549308575, guid: b8e4a1633a1a0724994eb24d16474b8e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -479,7 +484,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.02, y: -0.08}
   serializedVersion: 2
   m_Radius: 1
 --- !u!1660057539 &9223372036854775807
