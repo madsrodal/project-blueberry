@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 73721189}
   - component: {fileID: 73721188}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -653,7 +653,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1346691804}
         m_TargetAssemblyTypeName: ResetPlayer, Assembly-CSharp
-        m_MethodName: TaskOnClick
+        m_MethodName: TaskResetPosition
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
