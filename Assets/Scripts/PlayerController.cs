@@ -37,11 +37,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(fireballGo, transform.position, Quaternion.Euler(new Vector2(0, 0)));
+        }
     }
+
+    public GameObject fireballGo;
+    public float fireballSpeed = 8f;
 
     private void FixedUpdate()
     {
+        
+
         float moveInput = Input.GetAxisRaw("Horizontal");
         jumping = Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0;
 
