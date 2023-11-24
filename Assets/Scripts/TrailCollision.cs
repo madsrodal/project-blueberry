@@ -7,6 +7,8 @@ public class TrailCollisions : MonoBehaviour
     TrailRenderer myTrail;
     EdgeCollider2D myCollider;
 
+    public float collisionOffset = 1;
+
     static List<EdgeCollider2D> unusedColliders = new List<EdgeCollider2D>();
 
     void Awake()
@@ -41,16 +43,16 @@ public class TrailCollisions : MonoBehaviour
     {
         List<Vector2> points = new List<Vector2>();
         //avoid having default points at (-.5,0),(.5,0)
-        if (trail.positionCount == 0)
+
+        for (int positionIndex = 0; positionIndex < trail.positionCount; positionIndex++)
         {
-            points.Add(transform.position);
-            points.Add(transform.position);
-        }
-        else for (int position = 0; position < trail.positionCount; position++)
+            var position = trail.GetPosition(positionIndex);
+            var distance = Vector3.Distance(position, transform.position);
+            if (distance > collisionOffset)
             {
-                //ignores z axis when translating vector3 to vector2
-                points.Add(trail.GetPosition(position));
+                points.Add(position);
             }
+        }
         collider.SetPoints(points);
     }
 
