@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class PlayerController : MonoBehaviour
 {
     public float JumpForce = 10f;
@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 velocity;
-    private BoxCollider2D boxCollider;
+    private CircleCollider2D circleCollider;
 
     [SerializeField, Tooltip("Acceleration while grounded.")]
     public float WalkAcceleration = 75;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
     }
 
     // Start is called before the first frame update
@@ -68,15 +68,15 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
 
         // Retrieve all colliders we have intersected after velocity has been applied.
-        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius);
 
         foreach (Collider2D hit in hits)
         {
             // Ignore our own collider.
-            if (hit == boxCollider)
+            if (hit == circleCollider)
                 continue;
 
-            ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
+            ColliderDistance2D colliderDistance = hit.Distance(circleCollider);
 
             // Ensure that we are still overlapping this collider.
             // The overlap may no longer exist due to another intersected collider
