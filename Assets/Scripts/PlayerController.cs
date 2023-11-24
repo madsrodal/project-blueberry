@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     {
         float moveInput = Input.GetAxisRaw("Horizontal");
 
+        float horizontalInput = Input.GetAxisRaw("Horizontal");   // this takes in ANY horizontal input, whether that is arrow keys, A/D or even controller input
+
         if (isGrounded)
         {
             velocity.y = 0;
@@ -56,16 +58,8 @@ public class PlayerController : MonoBehaviour
         }
 
         float acceleration = isGrounded ? WalkAcceleration : AirAcceleration;
-        float deceleration = isGrounded ? GroundDeceleration : 0;
-
-        if (moveInput != 0)
-        {
-            velocity.x = Mathf.MoveTowards(velocity.x, MoveSpeed * moveInput, acceleration * Time.deltaTime);
-        }
-        else
-        {
-            velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
-        }
+        
+        velocity.x = Mathf.MoveTowards(velocity.x, MoveSpeed * moveInput, acceleration * Time.deltaTime);
 
         velocity.y += Physics2D.gravity.y * Time.deltaTime;
 
