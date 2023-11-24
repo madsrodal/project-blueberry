@@ -6,18 +6,28 @@ public class ResetPlayer : MonoBehaviour
     // Berrié
     private Rigidbody2D rb;
     private Tuple<Vector3, Quaternion> rbStartTransform;
+    //private SpriteRenderer spRend;
+    //private Sprite startSprite;
 
     // Camera
     private Camera cam;
     private Vector3 camStartTransform;
 
+    // Counter
+    private int resetCounter;
+
     private void Awake()
     {
-        rb = GameObject.Find("Berrié").GetComponent<Rigidbody2D>();
+        var berrie = GameObject.Find("Berrie");
+        rb = berrie.GetComponent<Rigidbody2D>();
         rbStartTransform = new Tuple<Vector3, Quaternion>(rb.transform.position, rb.transform.rotation);
+        //spRend = GameObject.Find("Round").GetComponent<SpriteRenderer>();
+        //startSprite = spRend.sprite;
 
         cam = Camera.main;
         camStartTransform = cam.transform.position;
+
+        resetCounter = 0;
     }
 
     // Start is called before the first frame update
@@ -36,10 +46,15 @@ public class ResetPlayer : MonoBehaviour
         rb.angularVelocity = 0;
         rb.transform.position = rbStartTransform.Item1;
         rb.transform.rotation = rbStartTransform.Item2;
+
+        //Debug.Log(startSprite.texture.name);
     }
 
-    public void TaskResetCamera()
+    public void TaskResetCamera() => cam.transform.position = camStartTransform;
+
+    public void TaskUpdateCounter()
     {
-        cam.transform.position = camStartTransform;
+        resetCounter++;
+        Debug.Log($"Resets: {resetCounter}");
     }
 }
