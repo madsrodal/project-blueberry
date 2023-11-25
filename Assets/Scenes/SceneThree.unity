@@ -232,6 +232,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1203072432698456066, guid: d6532b4e6d520a34ab64c4afcc4de95d, type: 3}
+      propertyPath: LevelSelectPanel
+      value: 
+      objectReference: {fileID: 1865270807}
     - target: {fileID: 8895514978737671313, guid: d6532b4e6d520a34ab64c4afcc4de95d, type: 3}
       propertyPath: m_Name
       value: UI - Event
@@ -3397,6 +3401,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46aa51db67f64c94994fb37af28f5360, type: 3}
+--- !u!1 &1865270807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3843068656102724597, guid: 46aa51db67f64c94994fb37af28f5360, type: 3}
+  m_PrefabInstance: {fileID: 1865270806}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7731534261842429884
 PrefabInstance:
   m_ObjectHideFlags: 0

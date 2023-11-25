@@ -202,4 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4e66a5c5513c34b985cf1641ec51fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DistanceThreshold: 5
+  DistanceY: 5
+  ActualDistance: 0
+  StartPosition: {x: 0, y: 0}
   collisionOffset: 1
