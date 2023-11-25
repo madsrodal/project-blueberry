@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(TrailRenderer))]
 public class JamGenerator : MonoBehaviour
@@ -9,6 +10,9 @@ public class JamGenerator : MonoBehaviour
     EdgeCollider2D myCollider;
     GameObject activePlayer;
     public float DistanceThreshold = 5f;
+    public float DistanceY = 5f;
+    Button resetButton;
+
     public float ActualDistance = 0f;
     
     public Vector2 StartPosition;
@@ -18,12 +22,14 @@ public class JamGenerator : MonoBehaviour
 
     void Awake()
     {
-        myTrail = this.GetComponent<TrailRenderer>();
+        myTrail = GetComponent<TrailRenderer>();
         myTrail.enabled = false;
 
         myCollider = GetValidCollider();
         activePlayer = GameObject.FindWithTag("Player");
         StartPosition = new Vector2(activePlayer.transform.position.x, activePlayer.transform.position.y);
+
+        resetButton = GameObject.FindWithTag("UI").GetComponentInChildren<Button>();
     }
 
     private void FixedUpdate()
@@ -38,6 +44,9 @@ public class JamGenerator : MonoBehaviour
 
     void Update()
     {
+        //if (resetButton.IsActive())
+        //    return;
+
         SetColliderPointsFromTrail(myTrail, myCollider);
         FollowPlayer(activePlayer);
     }
