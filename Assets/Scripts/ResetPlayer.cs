@@ -5,7 +5,7 @@ using UnityEngine;
 public class ResetPlayer : MonoBehaviour
 {
     public Sprite spIdle, spReset;
-    public bool IsResetting = false;
+    public static bool IsResetting = false;
 
     // Berrié
     private Rigidbody2D rb;
@@ -54,17 +54,15 @@ public class ResetPlayer : MonoBehaviour
     public void TaskResetTransform()
     {
         resetSound.Play();
-        //StartCoroutine(Gooey(false));
+        StartCoroutine(BeforeTransformCoroutine());
 
-        rbSprite.sprite = spReset;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = 0;
         rb.transform.position = rbStartTransform.Item1;
         rb.transform.rotation = rbStartTransform.Item2;
         rb.transform.localScale = rbStartTransform.Item3;
 
-        //EnableGoo();
-        StartCoroutine(SpriteDelayCoroutine());
+        StartCoroutine(AfterTransformCoroutine());
     }
 
     public void TaskResetCamera() => cam.transform.position = camStartTransform;
@@ -75,15 +73,17 @@ public class ResetPlayer : MonoBehaviour
         Debug.Log($"Resets: {resetCounter}");
     }
 
-    //private IEnumerator Gooey(bool enabled)
-    //{
-    //    gooTrail.emitting = enabled;
-    //    yield return new WaitForFixedUpdate();
-    //}
+    private IEnumerator BeforeTransformCoroutine()
+    {
+        IsResetting = true;
+        rbSprite.sprite = spReset;
+        yield return new WaitForSeconds(1f);
+    }
 
-    private IEnumerator SpriteDelayCoroutine()
+    private IEnumerator AfterTransformCoroutine()
     {
         yield return new WaitForSeconds(1f);
         rbSprite.sprite = spIdle;
+        IsResetting = false;
     }
 }

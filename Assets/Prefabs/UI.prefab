@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 356694271274900731}
   - component: {fileID: 7811111337457365490}
   - component: {fileID: 5124619602599502972}
-  - component: {fileID: 6083962901993266392}
+  - component: {fileID: 4577345020554164754}
   m_Layer: 5
   m_Name: ResetBottan
   m_TagString: Untagged
@@ -226,19 +226,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6083962901993266392}
-        m_TargetAssemblyTypeName: ResetPlayer, Assembly-CSharp
-        m_MethodName: TaskResetTransform
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6083962901993266392}
+      - m_Target: {fileID: 4577345020554164754}
         m_TargetAssemblyTypeName: ResetPlayer, Assembly-CSharp
         m_MethodName: TaskResetCamera
         m_Mode: 1
@@ -250,7 +238,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6083962901993266392}
+      - m_Target: {fileID: 4577345020554164754}
+        m_TargetAssemblyTypeName: ResetPlayer, Assembly-CSharp
+        m_MethodName: TaskResetTransform
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4577345020554164754}
         m_TargetAssemblyTypeName: ResetPlayer, Assembly-CSharp
         m_MethodName: TaskUpdateCounter
         m_Mode: 1
@@ -262,7 +262,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6083962901993266392
+--- !u!114 &4577345020554164754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,7 +276,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spIdle: {fileID: 21300000, guid: 2a371b62e251dd941b262d52aed9f5c4, type: 3}
   spReset: {fileID: 21300000, guid: 5010bbf6b26dcaf40a67c9007d998cda, type: 3}
-  IsResetting: 0
 --- !u!1 &1389324709928613478
 GameObject:
   m_ObjectHideFlags: 0
