@@ -451,9 +451,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 2422009754011363377, guid: 0136ad70d86eb9a4e9f90681ed221329, type: 3}
-  HorizontalThreshold: 2
-  VerticalThreshold: -6.5
-  Smoothness: 20
+  smoothSpeed: 0.125
+  locationOffset: {x: 0, y: 0, z: -10}
 --- !u!58 &8826713878360723897
 CircleCollider2D:
   m_ObjectHideFlags: 0
