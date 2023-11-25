@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 451063147756204341}
   - component: {fileID: 7488141361043425100}
   - component: {fileID: 5281813603488271353}
+  - component: {fileID: 1203072432698456066}
   m_Layer: 0
   m_Name: UI - Event
   m_TagString: Untagged
@@ -68,3 +69,16 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
+--- !u!114 &1203072432698456066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895514978737671313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b93c69be32a4a04aaca2bab23d28da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelSelectPanel: {fileID: 0}
