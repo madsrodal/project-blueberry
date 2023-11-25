@@ -9,11 +9,9 @@ public class JamGenerator : MonoBehaviour
     EdgeCollider2D myCollider;
     GameObject activePlayer;
     public float DistanceThreshold = 5f;
-    public float DistanceY = 5f;
-
     public float ActualDistance = 0f;
+    
     public Vector2 StartPosition;
-
     public float collisionOffset = 1;
 
     static List<EdgeCollider2D> unusedColliders = new List<EdgeCollider2D>();
@@ -69,9 +67,8 @@ public class JamGenerator : MonoBehaviour
     void SetColliderPointsFromTrail(TrailRenderer trail, EdgeCollider2D collider)
     {
         List<Vector2> points = new List<Vector2>();
-        //avoid having default points at (-.5,0),(.5,0)
-
         bool recentPositions = true;
+
         for (int positionIndex = trail.positionCount - 1; positionIndex >= 0; positionIndex--)
         {
             var position = trail.GetPosition(positionIndex);
