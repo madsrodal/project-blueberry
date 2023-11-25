@@ -503,7 +503,7 @@ MonoBehaviour:
   JumpForce: 0.5
   MoveSpeed: 1000
   velocity: {x: 0, y: 0}
-  WalkAcceleration: 300
+  WalkAcceleration: 500
   AirAcceleration: 150
   GroundDeceleration: 300
   jumping: 0
