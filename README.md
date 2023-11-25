@@ -2,7 +2,7 @@
 Project Blueberry for Bouvet North Game Jam 2023
 
 ![image](https://github.com/madsrodal/project-blueberry/assets/14834410/8123c1b8-8e84-4c50-87cc-46d8f7218844)
-
+```
 A blueberry that jumps around,
 From platform to platform, it's found,
 Leaving a trail of jam behind,
@@ -27,4 +27,4 @@ So if you see a blueberry jump,
 Don't be afraid, don't be a grump,
 Just follow it and you will find,
 A trail of jam that's one of a kind.
-
+```
