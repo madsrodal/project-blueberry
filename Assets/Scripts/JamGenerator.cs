@@ -16,7 +16,7 @@ public class JamGenerator : MonoBehaviour
     {
         myTrail = this.GetComponent<TrailRenderer>();
         myCollider = GetValidCollider();
-        activePlayer = GameObject.Find("Berrié");
+        activePlayer = GameObject.FindWithTag("Player");
     }
 
     void Update()
