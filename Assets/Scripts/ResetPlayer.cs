@@ -5,7 +5,7 @@ public class ResetPlayer : MonoBehaviour
 {
     // Berrié
     private Rigidbody2D rb;
-    private Tuple<Vector3, Quaternion> rbStartTransform;
+    private Tuple<Vector3, Quaternion, Vector3> rbStartTransform;
     //private SpriteRenderer spRend;
     //private Sprite startSprite;
 
@@ -18,9 +18,9 @@ public class ResetPlayer : MonoBehaviour
 
     private void Awake()
     {
-        var berrie = GameObject.Find("Berrié");
+        var berrie = GameObject.FindWithTag("Player");
         rb = berrie.GetComponent<Rigidbody2D>();
-        rbStartTransform = new Tuple<Vector3, Quaternion>(rb.transform.position, rb.transform.rotation);
+        rbStartTransform = new(rb.transform.position, rb.transform.rotation, rb.transform.localScale);
         //spRend = GameObject.Find("Round").GetComponent<SpriteRenderer>();
         //startSprite = spRend.sprite;
 
@@ -46,6 +46,7 @@ public class ResetPlayer : MonoBehaviour
         rb.angularVelocity = 0;
         rb.transform.position = rbStartTransform.Item1;
         rb.transform.rotation = rbStartTransform.Item2;
+        rb.transform.localScale = rbStartTransform.Item3;
 
         //Debug.Log(startSprite.texture.name);
     }

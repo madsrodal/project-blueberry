@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     const float groundEpsilon = .2f; 
     private bool isGrounded = true;
 
+    private GameObject berrie;
     private Rigidbody2D rb;
     public Vector2 velocity;
     private CircleCollider2D circleCollider;
@@ -22,8 +24,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("Deceleration applied when character is grounded and not attempting to move.")]
     public float GroundDeceleration = 300;
     public bool jumping = false;
+
+    private static float scaleFactor = 0.0005f;
+
     private void Awake()
     {
+        berrie = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
     }
@@ -31,17 +37,28 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    private void UpdateScale()
+    {
+
+        var localScale = berrie.transform.localScale;
+        localScale.x -= scaleFactor;
+        localScale.y -= scaleFactor;
+        localScale.z -= scaleFactor;
+        if (localScale.sqrMagnitude >= 0.5f)
+            berrie.transform.localScale = localScale;
     }
 
     private void FixedUpdate()
     {
+        UpdateScale();
+
         float moveInput = Input.GetAxisRaw("Horizontal");
         jumping = Input.GetKeyDown(KeyCode.Space) || Input.GetAxisRaw("Vertical") > 0;
 
