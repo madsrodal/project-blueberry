@@ -57,8 +57,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateScale();
-
         float moveInput = Input.GetAxisRaw("Horizontal");
         jumping = Input.GetKeyDown(KeyCode.Space) || Input.GetAxisRaw("Vertical") > 0;
 
@@ -76,6 +74,9 @@ public class PlayerController : MonoBehaviour
                 velocity.y = Mathf.Sqrt(2 * JumpForce * Mathf.Abs(Physics2D.gravity.y));
             }
         }
+
+        if (velocity.x != 0 || velocity.y != 0)
+            UpdateScale();
 
         velocity.y += Physics2D.gravity.y * Time.deltaTime;
         rb.AddForce(new Vector2(0, velocity.y), ForceMode2D.Impulse);
