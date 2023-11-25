@@ -24,7 +24,7 @@ public class JamGenerator : MonoBehaviour
         myTrail.enabled = false;
 
         myCollider = GetValidCollider();
-        activePlayer = GameObject.Find("Berrié");
+        activePlayer = GameObject.FindWithTag("Player");
         StartPosition = new Vector2(activePlayer.transform.position.x, activePlayer.transform.position.y);
     }
 
