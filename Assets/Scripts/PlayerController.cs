@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         float moveInput = Input.GetAxisRaw("Horizontal");
-        jumping = Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0;
+        jumping = Input.GetKeyDown(KeyCode.Space) || Input.GetAxisRaw("Vertical") > 0;
 
         float acceleration = isGrounded ? WalkAcceleration : AirAcceleration;
         velocity.x = Mathf.MoveTowards(velocity.x, MoveSpeed * moveInput, acceleration);
