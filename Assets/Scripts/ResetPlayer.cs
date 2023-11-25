@@ -21,6 +21,8 @@ public class ResetPlayer : MonoBehaviour
 
     // Counter
     private int resetCounter;
+    private Vector3 camEndTransform;
+    private AudioSource resetSound;
 
     private void Awake()
     {
@@ -34,6 +36,7 @@ public class ResetPlayer : MonoBehaviour
 
         cam = Camera.main;
         camStartTransform = cam.transform.position;
+        resetSound = GameObject.Find("ResetSound").GetComponent<AudioSource>();
 
         resetCounter = 0;
     }
@@ -50,6 +53,7 @@ public class ResetPlayer : MonoBehaviour
 
     public void TaskResetTransform()
     {
+        resetSound.Play();
         //StartCoroutine(Gooey(false));
 
         rbSprite.sprite = spReset;

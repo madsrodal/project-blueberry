@@ -27,11 +27,15 @@ public class PlayerController : MonoBehaviour
 
     private static float scaleFactor = 0.0005f;
 
+    private AudioSource jump;
+    
     private void Awake()
     {
         berrie = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
+
+        jump = GameObject.Find("JumpSound").GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -70,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
             if (jumping)
             {
-                // Calculate the velocity required to achieve the target jump height.
+                jump.Play();
                 velocity.y = Mathf.Sqrt(2 * JumpForce * Mathf.Abs(Physics2D.gravity.y));
             }
         }
