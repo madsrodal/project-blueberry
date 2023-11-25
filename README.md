@@ -1,7 +1,8 @@
 # Project Blueberry
 Project Blueberry for Bouvet North Game Jam 2023
 
-![image](https://github.com/madsrodal/project-blueberry/assets/14834410/8123c1b8-8e84-4c50-87cc-46d8f7218844)
+![image](https://github.com/madsrodal/project-blueberry/assets/14834410/fccad7c3-68b4-4e7e-ab9a-f3322db6e7c4)
+
 ```
 A blueberry that jumps around,
 From platform to platform, it's found,
