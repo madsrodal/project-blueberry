@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(TrailRenderer))]
-public class TrailCollisions : MonoBehaviour
+public class JamGenerator : MonoBehaviour
 {
     TrailRenderer myTrail;
     EdgeCollider2D myCollider;
+    GameObject activePlayer;
 
     public float collisionOffset = 1;
 
@@ -15,11 +16,13 @@ public class TrailCollisions : MonoBehaviour
     {
         myTrail = this.GetComponent<TrailRenderer>();
         myCollider = GetValidCollider();
+        activePlayer = GameObject.Find("Berrié");
     }
 
     void Update()
     {
         SetColliderPointsFromTrail(myTrail, myCollider);
+        FollowPlayer(activePlayer);
     }
 
     //Gets from unused pool or creates one if none in pool
@@ -39,16 +42,26 @@ public class TrailCollisions : MonoBehaviour
         return validCollider;
     }
 
+    void FollowPlayer(GameObject player)
+    {
+        transform.position = player.transform.position + new Vector3(0, -1, 0);
+    }
+
     void SetColliderPointsFromTrail(TrailRenderer trail, EdgeCollider2D collider)
     {
         List<Vector2> points = new List<Vector2>();
         //avoid having default points at (-.5,0),(.5,0)
 
-        for (int positionIndex = 0; positionIndex < trail.positionCount; positionIndex++)
+        bool recentPositions = true;
+        for (int positionIndex = trail.positionCount - 1; positionIndex >= 0; positionIndex--)
         {
             var position = trail.GetPosition(positionIndex);
-            var distance = Vector3.Distance(position, transform.position);
+            var distance = Mathf.Abs(position.x - transform.position.x);
             if (distance > collisionOffset)
+            {
+                recentPositions = false;
+            }
+            if (!recentPositions)
             {
                 points.Add(position);
             }
