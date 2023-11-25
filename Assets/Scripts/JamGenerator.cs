@@ -16,12 +16,14 @@ public class JamGenerator : MonoBehaviour
     public Vector2 StartPosition;
     public float collisionOffset = 1;
 
-    static List<EdgeCollider2D> unusedColliders = new List<EdgeCollider2D>();
+    static List<EdgeCollider2D> unusedColliders;
 
     void Awake()
     {
         myTrail = GetComponent<TrailRenderer>();
         myTrail.enabled = false;
+
+        unusedColliders = new List<EdgeCollider2D>();
 
         myCollider = GetValidCollider();
         activePlayer = GameObject.FindWithTag("Player");
