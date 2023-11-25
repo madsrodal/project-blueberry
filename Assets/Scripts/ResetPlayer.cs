@@ -18,7 +18,7 @@ public class ResetPlayer : MonoBehaviour
 
     private void Awake()
     {
-        var berrie = GameObject.Find("Berrie");
+        var berrie = GameObject.Find("Berrié");
         rb = berrie.GetComponent<Rigidbody2D>();
         rbStartTransform = new Tuple<Vector3, Quaternion>(rb.transform.position, rb.transform.rotation);
         //spRend = GameObject.Find("Round").GetComponent<SpriteRenderer>();
