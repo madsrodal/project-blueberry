@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(TrailRenderer))]
 public class JamGenerator : MonoBehaviour
@@ -10,22 +11,25 @@ public class JamGenerator : MonoBehaviour
     GameObject activePlayer;
     public float DistanceThreshold = 5f;
     public float DistanceY = 5f;
+    Button resetButton;
 
     public float ActualDistance = 0f;
+    
     public Vector2 StartPosition;
-
     public float collisionOffset = 1;
 
     static List<EdgeCollider2D> unusedColliders = new List<EdgeCollider2D>();
 
     void Awake()
     {
-        myTrail = this.GetComponent<TrailRenderer>();
+        myTrail = GetComponent<TrailRenderer>();
         myTrail.enabled = false;
 
         myCollider = GetValidCollider();
         activePlayer = GameObject.FindWithTag("Player");
         StartPosition = new Vector2(activePlayer.transform.position.x, activePlayer.transform.position.y);
+
+        resetButton = GameObject.FindWithTag("UI").GetComponentInChildren<Button>();
     }
 
     private void FixedUpdate()
@@ -40,6 +44,9 @@ public class JamGenerator : MonoBehaviour
 
     void Update()
     {
+        //if (resetButton.IsActive())
+        //    return;
+
         SetColliderPointsFromTrail(myTrail, myCollider);
         FollowPlayer(activePlayer);
     }
@@ -69,9 +76,8 @@ public class JamGenerator : MonoBehaviour
     void SetColliderPointsFromTrail(TrailRenderer trail, EdgeCollider2D collider)
     {
         List<Vector2> points = new List<Vector2>();
-        //avoid having default points at (-.5,0),(.5,0)
-
         bool recentPositions = true;
+
         for (int positionIndex = trail.positionCount - 1; positionIndex >= 0; positionIndex--)
         {
             var position = trail.GetPosition(positionIndex);
