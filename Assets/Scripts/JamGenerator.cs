@@ -52,11 +52,16 @@ public class JamGenerator : MonoBehaviour
         List<Vector2> points = new List<Vector2>();
         //avoid having default points at (-.5,0),(.5,0)
 
-        for (int positionIndex = 0; positionIndex < trail.positionCount; positionIndex++)
+        bool recentPositions = true;
+        for (int positionIndex = trail.positionCount - 1; positionIndex >= 0; positionIndex--)
         {
             var position = trail.GetPosition(positionIndex);
             var distance = Mathf.Abs(position.x - transform.position.x);
             if (distance > collisionOffset)
+            {
+                recentPositions = false;
+            }
+            if (!recentPositions)
             {
                 points.Add(position);
             }
