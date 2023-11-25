@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(TrailRenderer))]
 public class JamGenerator : MonoBehaviour
@@ -11,7 +9,7 @@ public class JamGenerator : MonoBehaviour
     GameObject activePlayer;
     public float DistanceThreshold = 5f;
     public float DistanceY = 5f;
-    Button resetButton;
+    bool deathFlag = false;
 
     public float ActualDistance = 0f;
     
@@ -28,12 +26,16 @@ public class JamGenerator : MonoBehaviour
         myCollider = GetValidCollider();
         activePlayer = GameObject.FindWithTag("Player");
         StartPosition = new Vector2(activePlayer.transform.position.x, activePlayer.transform.position.y);
-
-        resetButton = GameObject.FindWithTag("UI").GetComponentInChildren<Button>();
     }
 
     private void FixedUpdate()
     {
+        if (ResetPlayer.IsResetting)
+        {
+            Debug.Log("dead");
+            deathFlag = true;
+        }
+
         ActualDistance = Vector2.Distance(StartPosition, activePlayer.transform.position);
         
         if (ActualDistance > DistanceThreshold)
@@ -44,11 +46,11 @@ public class JamGenerator : MonoBehaviour
 
     void Update()
     {
-        //if (resetButton.IsActive())
-        //    return;
-
-        SetColliderPointsFromTrail(myTrail, myCollider);
-        FollowPlayer(activePlayer);
+        if (!deathFlag)
+        {
+            SetColliderPointsFromTrail(myTrail, myCollider);
+            FollowPlayer(activePlayer);
+        }
     }
 
     //Gets from unused pool or creates one if none in pool
