@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693ea7b2d89ed0e428a68b339a48f562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jammer: {fileID: 6875277794573359901, guid: 48934d08c2ed6bd4fb285c63d169455b, type: 3}
   spIdle: {fileID: 21300000, guid: 2a371b62e251dd941b262d52aed9f5c4, type: 3}
   spReset: {fileID: 21300000, guid: 5010bbf6b26dcaf40a67c9007d998cda, type: 3}
 --- !u!1 &1389324709928613478

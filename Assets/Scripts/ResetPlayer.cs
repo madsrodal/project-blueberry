@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ResetPlayer : MonoBehaviour
 {
+    public GameObject jammer;
     public Sprite spIdle, spReset;
     public static bool IsResetting = false;
 
@@ -12,8 +13,6 @@ public class ResetPlayer : MonoBehaviour
     private Tuple<Vector3, Quaternion, Vector3> rbStartTransform;
     private SpriteRenderer rbSprite;
 
-    // Jam
-    //private TrailRenderer gooTrail;
 
     // Camera
     private Camera cam;
@@ -53,15 +52,8 @@ public class ResetPlayer : MonoBehaviour
 
     public void TaskResetTransform()
     {
-        resetSound.Play();
         StartCoroutine(BeforeTransformCoroutine());
-
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = 0;
-        rb.transform.position = rbStartTransform.Item1;
-        rb.transform.rotation = rbStartTransform.Item2;
-        rb.transform.localScale = rbStartTransform.Item3;
-
+        StartCoroutine(TransformCoroutine());
         StartCoroutine(AfterTransformCoroutine());
     }
 
@@ -76,13 +68,25 @@ public class ResetPlayer : MonoBehaviour
     private IEnumerator BeforeTransformCoroutine()
     {
         IsResetting = true;
+        resetSound.Play();
         rbSprite.sprite = spReset;
         yield return new WaitForSeconds(1f);
+    }
+
+    private IEnumerator TransformCoroutine()
+    {
+        yield return new WaitForFixedUpdate();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = 0;
+        rb.transform.position = rbStartTransform.Item1;
+        rb.transform.rotation = rbStartTransform.Item2;
+        rb.transform.localScale = rbStartTransform.Item3;
     }
 
     private IEnumerator AfterTransformCoroutine()
     {
         yield return new WaitForSeconds(1f);
+        Instantiate(jammer);
         rbSprite.sprite = spIdle;
         IsResetting = false;
     }
