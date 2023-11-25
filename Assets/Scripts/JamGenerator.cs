@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(TrailRenderer))]
@@ -7,6 +8,11 @@ public class JamGenerator : MonoBehaviour
     TrailRenderer myTrail;
     EdgeCollider2D myCollider;
     GameObject activePlayer;
+    public float DistanceThreshold = 5f;
+    public float DistanceY = 5f;
+
+    public float ActualDistance = 0f;
+    public Vector2 StartPosition;
 
     public float collisionOffset = 1;
 
@@ -15,8 +21,21 @@ public class JamGenerator : MonoBehaviour
     void Awake()
     {
         myTrail = this.GetComponent<TrailRenderer>();
+        myTrail.enabled = false;
+
         myCollider = GetValidCollider();
         activePlayer = GameObject.Find("Berrié");
+        StartPosition = new Vector2(activePlayer.transform.position.x, activePlayer.transform.position.y);
+    }
+
+    private void FixedUpdate()
+    {
+        ActualDistance = Vector2.Distance(StartPosition, activePlayer.transform.position);
+        
+        if (ActualDistance > DistanceThreshold)
+        {
+            myTrail.enabled = true;
+        }
     }
 
     void Update()
