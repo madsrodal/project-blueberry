@@ -161,11 +161,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6646539125826620189, guid: b8e4a1633a1a0724994eb24d16474b8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.77
+      value: -47.47
       objectReference: {fileID: 0}
     - target: {fileID: 6646539125826620189, guid: b8e4a1633a1a0724994eb24d16474b8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.57
+      value: -5.62
       objectReference: {fileID: 0}
     - target: {fileID: 6646539125826620189, guid: b8e4a1633a1a0724994eb24d16474b8e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -202,7 +202,7 @@ PrefabInstance:
     - target: {fileID: 7613694467011518932, guid: b8e4a1633a1a0724994eb24d16474b8e, type: 3}
       propertyPath: Camera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2118564325}
     m_RemovedComponents:
     - {fileID: 8642463927499612443, guid: b8e4a1633a1a0724994eb24d16474b8e, type: 3}
     - {fileID: 2620529613284366774, guid: b8e4a1633a1a0724994eb24d16474b8e, type: 3}
@@ -1594,8 +1594,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1f0267fe1dfdf4b84da2a9cb9ab6c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 0.6
-  MoveSpeed: 400
+  JumpForce: 5
+  MoveSpeed: 600
   velocity: {x: 0, y: 0}
   WalkAcceleration: 300
   AirAcceleration: 150
@@ -1742,7 +1742,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 36.360516
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1767,7 +1767,7 @@ Transform:
   m_GameObject: {fileID: 2118564325}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.6, y: 24.5, z: -10}
+  m_LocalPosition: {x: -20.64, y: 3.72, z: -10}
   m_LocalScale: {x: 0.04449572, y: 0.08793818, z: 0.17799}
   m_ConstrainProportionsScale: 0
   m_Children: []

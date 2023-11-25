@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float JumpForce = 5f;
-    public float MoveSpeed = 400f;
+    public float JumpForce = 0.5f;
+    public float MoveSpeed = 600;
     
     const float groundEpsilon = .2f; 
     private bool isGrounded = true;
