@@ -7,6 +7,7 @@ public class ResetPlayer : MonoBehaviour
     public GameObject jammer;
     public Sprite spIdle, spReset;
     public static bool IsResetting = false;
+    public static int ResetCounter = 0;
 
     // Berrié
     private Rigidbody2D rb;
@@ -19,7 +20,6 @@ public class ResetPlayer : MonoBehaviour
     private Vector3 camStartTransform;
 
     // Counter
-    private int resetCounter;
     private Vector3 camEndTransform;
     private AudioSource resetSound;
 
@@ -36,8 +36,6 @@ public class ResetPlayer : MonoBehaviour
         cam = Camera.main;
         camStartTransform = cam.transform.position;
         resetSound = GameObject.Find("ResetSound").GetComponent<AudioSource>();
-
-        resetCounter = 0;
     }
 
     // Start is called before the first frame update
@@ -61,8 +59,7 @@ public class ResetPlayer : MonoBehaviour
 
     public void TaskUpdateCounter()
     {
-        resetCounter++;
-        Debug.Log($"Resets: {resetCounter}");
+        ResetCounter++;
     }
 
     private IEnumerator BeforeTransformCoroutine()

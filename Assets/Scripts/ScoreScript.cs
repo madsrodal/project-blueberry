@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ScoreScript : MonoBehaviour
 {
@@ -16,6 +12,8 @@ public class ScoreScript : MonoBehaviour
 
     private int frameCount = 0;
 
+    private int curResetCounter = 0;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,6 +24,12 @@ public class ScoreScript : MonoBehaviour
     void FixedUpdate()
     {
         frameCount++;
+
+        if (curResetCounter < ResetPlayer.ResetCounter)
+        {
+            curResetCounter++;
+            scoreValue -= 50;
+        }
 
         if (frameCount > framePenalty)
         {
